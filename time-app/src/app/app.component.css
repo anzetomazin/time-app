@@ -1,4 +1,35 @@
+mat-drawer {
+    background-color: #191919 !important;
+}
+
+mat-drawer * {
+    color: white;
+}
+
+mat-icon {
+    color: white !important;
+}
+
+#logo {
+    font-size: 55px;
+}
+
+.underline {
+    background-color: #3f51b5;
+    height: 3px;
+    width: 55px;
+    border-radius: 5px;
+    margin: 0 auto;
+}
+
+.separator {
+    width: 10px;
+}
+
 a {
     text-decoration: none;
-    color: black;
+}
+
+h1 {
+    font-weight: bold;
 }
