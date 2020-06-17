@@ -6,9 +6,17 @@ import { EmployeeAddComponent } from './employees/employee-add/employee-add.comp
 
 
 const routes: Routes = [
-    { path: 'employees', component: EmployeeListComponent },
-    { path: 'employees/present', component: PresentListComponent },
-    { path: 'employees/add', component: EmployeeAddComponent }
+    // { path: 'employees', component: EmployeeListComponent },
+    // { path: 'employees/present', component: PresentListComponent },
+    // { path: 'employees/add', component: EmployeeAddComponent },
+
+    {
+      path: 'employees',
+      loadChildren: () =>
+          import('./employees/employees.module').then(
+              m => m.EmployeesModule
+          )
+  },
 ];
 
 @NgModule({
