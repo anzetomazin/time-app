@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EmployeesModule } from '../employees.module';
 
 @Component({
   selector: 'app-employee-add',
