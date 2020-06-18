@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { TokenService } from 'src/app/core/token.service';
 
 @Component({
   selector: 'app-token-settings',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TokenSettingsComponent implements OnInit {
 
-  constructor() { }
+  form: FormGroup;
 
-  ngOnInit(): void {
+  constructor(
+    private tokenService: TokenService,
+    private formBuilder: FormBuilder
+  ) { }
+
+  ngOnInit() {
+    this.form = this.formBuilder.group({
+        token: '',
+    });
+}
+
+  submitToken(formData): void {
+    const token = formData.token;
+    if (token !== '' && token !== null && token.length >= 10) {
+      this.tokenService.setToken(formData.token);
+      this.form.reset();
+    }
   }
-
 }
