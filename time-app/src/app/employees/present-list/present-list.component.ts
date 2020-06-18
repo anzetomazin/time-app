@@ -13,7 +13,7 @@ import { EmployeeService } from '../shared/employee.service';
 })
 export class PresentListComponent implements OnInit {
 
-	displayedColumns: string[] = ['firstName', 'lastName', 'address', 'gender', 'type', 'location'];
+	displayedColumns: string[] = ['firstName', 'lastName', 'type', 'location'];
 	dataSource = new MatTableDataSource<Employee>();
 
 	constructor(
@@ -22,11 +22,14 @@ export class PresentListComponent implements OnInit {
 
 	ngOnInit(): void {
 
+		this.refresh();
+	}
+
+	refresh(): void {
 		this.employeeService.getAll().pipe()
 		.subscribe((item: Employee[]) => {
 			console.log(item);
 			this.dataSource = new MatTableDataSource<Employee>(item);
 		});
 	}
-
 };
