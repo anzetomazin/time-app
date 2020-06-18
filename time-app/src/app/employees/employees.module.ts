@@ -13,11 +13,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { SharedListComponent } from './shared/shared-list/shared-list.component';
 
 
 
 @NgModule({
-	declarations: [EmployeeListComponent, EmployeeAddComponent, PresentListComponent],
+	declarations: [EmployeeListComponent, EmployeeAddComponent, PresentListComponent, SharedListComponent],
 	imports: [
 		CommonModule,
 		EmployeesRoutingModule,
