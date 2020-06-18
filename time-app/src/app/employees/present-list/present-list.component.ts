@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { EmployeesModule } from '../employees.module';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { Employee } from '../shared/employee.model';
+import { EmployeesModule } from '../employees.module';
+import { EmployeeService } from '../shared/employee.service';
 
 
 @Component({
@@ -10,33 +13,35 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class PresentListComponent implements OnInit {
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-	dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+	displayedColumns: string[] = ['firstName', 'lastName', 'address', 'gender', 'type', 'location'];
+	dataSource = new MatTableDataSource<Employee>();
+
+	constructor(
+		private employeeService: EmployeeService
+	) {}
+
+	@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+
 
 	ngOnInit(): void {
+
+		this.employeeService.getAll().pipe()
+		.subscribe((item: Employee[]) => {
+			console.log(item);
+			this.dataSource = new MatTableDataSource<Employee>(item);
+			this.dataSource.paginator = this.paginator;
+			this.dataSource.filterPredicate = function(data, filter: string): boolean {
+				return data.FirstName.toLowerCase().includes(filter)
+				|| data.LastName.toLowerCase().includes(filter)
+				|| `${data.FirstName.toLowerCase()} ${data.LastName.toLowerCase()}`.includes(filter)
+				|| `${data.LastName.toLowerCase()} ${data.FirstName.toLowerCase()}`.includes(filter);
+			}
+		});
 	}
 
-}
+	applyFilter(event: Event) {
+		const filterValue = (event.target as HTMLInputElement).value;
+		this.dataSource.filter = filterValue.trim().toLowerCase();
+	}
 
-export interface PeriodicElement {
-	name: string;
-	position: number;
-	weight: number;
-	symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-	{position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-	{position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-	{position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-	{position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na'},
-	{position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg'},
-	{position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al'},
-	{position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si'},
-	{position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P'},
-	{position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S'},
-	{position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl'},
-	{position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar'},
-	{position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K'},
-	{position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'},
-];
+};
