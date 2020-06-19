@@ -1,6 +1,6 @@
 <div style="padding: 50px;">
 
-    <a routerLink='/employees'>Back to list</a>
+    <a routerLink='/employees' class="accent-text">Back to list</a>
 
     <h1>Add Employee</h1>
     <form [formGroup]="form" (ngSubmit)="addEmployee()">
@@ -29,7 +29,7 @@
             </mat-list-item>
 
             <mat-list-item>
-                <button mat-raised-button color="primary" type="submit">Add</button>
+                <button mat-raised-button class="accent-color" type="submit">Add</button>
             </mat-list-item>
 
         </mat-list>

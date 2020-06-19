@@ -3,6 +3,17 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.accent-color {
+    /* background-color: #2ea3f2 !important; */
+    background-color: #039be5;
+    color: white;
+}
+
+.accent-text {
+    color: #039be5;
+    text-decoration: none;
+}
+
 .error-snackbar {
     background-color: #B00020;
     color: white;
@@ -19,4 +30,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .success-snackbar .mat-simple-snackbar-action  {
     color: black;
+}
+
+.mat-focused .mat-form-field-label {
+    color: #039be5 !important;
+}
+
+.mat-form-field-underline {
+    background-color: grey !important;
+}
+
+.mat-form-field-ripple {
+    background-color: black !important;
+    height: 1px !important;
 }
