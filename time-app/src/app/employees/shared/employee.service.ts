@@ -3,8 +3,6 @@ import { ApiService } from 'src/app/core/api.service';
 import { Observable } from 'rxjs';
 import { Employee } from './employee.model';
 import { map } from 'rxjs/operators';
-import { HttpParams } from '@angular/common/http';
-import { Timestamp } from 'rxjs/internal/operators/timestamp';
 
 @Injectable({
 providedIn: 'root'

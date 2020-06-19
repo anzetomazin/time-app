@@ -1,12 +1,16 @@
 import { TestBed } from '@angular/core/testing';
-
 import { SnackbarService } from './snackbar.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+
+
 
 describe('SnackbarService', () => {
   let service: SnackbarService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
+  beforeEach( async () => {
+    TestBed.configureTestingModule({imports: [MatSnackBarModule, RouterTestingModule]});
     service = TestBed.inject(SnackbarService);
   });
 
