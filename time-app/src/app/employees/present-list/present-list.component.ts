@@ -20,16 +20,18 @@ export class PresentListComponent implements OnInit {
 		private employeeService: EmployeeService
 	) {}
 
+	@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+
 	ngOnInit(): void {
 
 		this.refresh();
 	}
 
 	refresh(): void {
-		this.employeeService.getAll().pipe()
+		this.employeeService.getAllPresent().pipe()
 		.subscribe((item: Employee[]) => {
-			console.log(item);
 			this.dataSource = new MatTableDataSource<Employee>(item);
+			this.dataSource.paginator = this.paginator;
 		});
 	}
 };

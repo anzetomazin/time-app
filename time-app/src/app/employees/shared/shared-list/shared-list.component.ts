@@ -11,20 +11,10 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class SharedListComponent implements OnInit {
 
-  @Input() displayedColumns: string[];
+  	@Input() displayedColumns: string[];
 	@Input() dataSource: MatTableDataSource<Employee>;
 
-	@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-
-	ngOnInit(): void {
-    this.dataSource.paginator = this.paginator;
-			this.dataSource.filterPredicate = function(data, filter: string): boolean {
-				return data.FirstName.toLowerCase().includes(filter)
-				|| data.LastName.toLowerCase().includes(filter)
-				|| `${data.FirstName.toLowerCase()} ${data.LastName.toLowerCase()}`.includes(filter)
-				|| `${data.LastName.toLowerCase()} ${data.FirstName.toLowerCase()}`.includes(filter);
-			}
-  }
+	ngOnInit(): void {}
 
 	applyFilter(event: Event) {
 		const filterValue = (event.target as HTMLInputElement).value;

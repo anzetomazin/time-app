@@ -6,6 +6,8 @@ import { PresentListComponent } from './present-list/present-list.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { EmployeeAddComponent } from './employee-add/employee-add.component';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -29,6 +31,8 @@ import { SharedListComponent } from './shared/shared-list/shared-list.component'
 		MatButtonModule,
 		MatIconModule,
 		MatListModule,
+		FormsModule,
+		ReactiveFormsModule
 	]
 })
 export class EmployeesModule { }

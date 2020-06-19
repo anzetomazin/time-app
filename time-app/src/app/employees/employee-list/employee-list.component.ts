@@ -19,12 +19,20 @@ export class EmployeeListComponent implements OnInit {
 		private employeeService: EmployeeService
 	) {}
 
+	@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+
 	ngOnInit(): void {
 
 		this.employeeService.getAll().pipe()
 		.subscribe((item: Employee[]) => {
-			console.log(item);
 			this.dataSource = new MatTableDataSource<Employee>(item);
+			this.dataSource.filterPredicate = function(data, filter: string): boolean {
+				return data.FirstName.toLowerCase().includes(filter)
+				|| data.LastName.toLowerCase().includes(filter)
+				|| `${data.FirstName.toLowerCase()} ${data.LastName.toLowerCase()}`.includes(filter)
+				|| `${data.LastName.toLowerCase()} ${data.FirstName.toLowerCase()}`.includes(filter);
+			}
+			this.dataSource.paginator = this.paginator;
 		});
 	}
 }
