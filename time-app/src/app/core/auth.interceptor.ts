@@ -3,27 +3,40 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { TokenService } from './token.service';
+import { SnackbarService } from './snackbar.service';
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
   constructor(
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private snackbarService: SnackbarService
   ) {}
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
     const token = this.tokenService.getToken();
     const authReq = request.clone({
       setHeaders: { 
         Authorization: `SpicaToken ${token}`,
-        Accept: '*/*'
+        Accept: '*/*',
+        'Content-Type': 'application/json'
       }
     })
-    return next.handle(authReq);
+    return next.handle(authReq).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          this.snackbarService.openSnackBar('Unauthorized! Insert a valid token.', 'Settings', 'error');
+        } else {
+          return throwError(error);
+        }
+      })
+    );
   }
 }
