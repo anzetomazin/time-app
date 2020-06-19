@@ -11,13 +11,16 @@ mat-icon {
 }
 
 #logo {
-    font-size: 55px;
+    margin-bottom: 10px;
+    text-align: center;
+    padding: 10px;
+    font-size: 20px;
 }
 
 .underline {
     background-color: #3f51b5;
     height: 3px;
-    width: 55px;
+    width: 70%;
     border-radius: 5px;
     margin: 0 auto;
 }

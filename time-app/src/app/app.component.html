@@ -1,13 +1,15 @@
 <mat-drawer-container style="height: 100%;">
 	<mat-drawer mode="side" opened>
     	<mat-list>
-			<mat-list-item>
-				<mat-icon aria-hidden="false" aria-label="Example home icon" id="logo">schedule</mat-icon>
-			</mat-list-item>
-      		<mat-list-item>
-				<div class="underline"></div>
-				<h1>TimeApp</h1>
-			</mat-list-item>
+			<a routerLink="/employees">
+				<div id="logo">
+					<div>
+						<mat-icon aria-hidden="false" aria-label="Example home icon" >schedule</mat-icon><br>
+					</div>
+					<div>TimeApp</div>
+					<div class="underline"></div>
+				</div>
+			</a>
 			<a routerLink="/employees">
 				<mat-list-item>
 					<mat-icon aria-hidden="false" aria-label="Example home icon">perm_contact_calendar</mat-icon>
