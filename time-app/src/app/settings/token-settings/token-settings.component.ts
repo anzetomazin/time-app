@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TokenService } from 'src/app/core/token.service';
 
 @Component({
@@ -18,7 +18,13 @@ export class TokenSettingsComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-        token: '',
+      token: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('^[A-Z\-]*')
+        ]
+      ]
     });
 }
 
