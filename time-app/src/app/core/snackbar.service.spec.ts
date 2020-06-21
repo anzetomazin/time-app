@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { SnackbarService } from './snackbar.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 

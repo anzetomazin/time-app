@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeesModule } from '../employees.module';
 import { EmployeeService } from '../shared/employee.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';

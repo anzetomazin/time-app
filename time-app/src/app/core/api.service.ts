@@ -3,7 +3,6 @@ import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http'
 import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { catchError } from 'rxjs/operators';
-import { SnackbarService } from './snackbar.service';
 
 @Injectable({
   providedIn: 'root',

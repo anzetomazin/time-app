@@ -23,7 +23,7 @@ export class EmployeeListComponent implements OnInit {
 
 	ngOnInit(): void {
 
-		this.employeeService.getAll().pipe()
+		this.employeeService.getAll()
 		.subscribe((item: Employee[]) => {
 			this.dataSource = new MatTableDataSource<Employee>(item);
 			this.dataSource.filterPredicate = function(data, filter: string): boolean {

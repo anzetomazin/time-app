@@ -28,7 +28,7 @@ export class PresentListComponent implements OnInit {
 	}
 
 	refresh(): void {
-		this.employeeService.getAllPresent().pipe()
+		this.employeeService.getAllPresent()
 		.subscribe((item: Employee[]) => {
 			this.dataSource = new MatTableDataSource<Employee>(item);
 			this.dataSource.paginator = this.paginator;
